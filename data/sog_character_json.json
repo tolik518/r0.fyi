@@ -1,0 +1,20 @@
+{
+  "id": "sog-character-editor",
+  "name": "SoG Character Editor",
+  "show_name": true,
+  "year_started": 2024,
+  "year_modified": 2024,
+  "dateCreated": "2024-04-03",
+  "logo": null,
+  "screenshots": [
+    "screenshots/sog-character-editor-1.png"
+  ],
+  "description": [
+    "SoG Character Editor is a tool for changing the name and gender in the Secrets of Grindea character savegames.",
+    "It is basically a stripped down, cheat free version of the SoG Savegame Editor."
+  ],
+  "technologies": ["Rust"],
+  "platforms": ["Windows", "Linux"],
+  "repository": "https://github.com/tolik518/sog-character-editor",
+  "category": "DeveloperTool"
+}

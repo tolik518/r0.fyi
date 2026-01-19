@@ -1,0 +1,190 @@
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      line-height: 1.5rem;
+    }
+
+    body {
+      font-family: monospace;
+      background-color: #2b2b2b;
+      color: #32cd32;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 3rem;
+    }
+    
+    .logo-name {
+      /* line offset so text and image matches */
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      width: inherit;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      border: 2px solid #32cd32;
+      padding: 1rem;
+      background: #1a1a1a;
+      box-shadow: 3px 3px 0px 0px #32cd32;
+    }
+
+    .logo-name img {
+      height: auto;
+      width: auto;
+      max-width: 100%;
+      max-height: 48px;
+      margin-right: 0.5rem;
+    }
+
+    .year {
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
+
+    .source-code {
+      color: #32cd32;
+      text-decoration: none;
+      border: 1px dashed #32cd32;
+      padding: 0.1rem 0.1rem;
+      transition: background-color 0.3s;
+    }
+
+    a {
+      color: #32cd32;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #32cd32;
+      color: #2b2b2b;
+    }
+
+    .source-code {
+      display: inline-block;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      line-height: normal;
+      padding: 0.3rem;
+      float: right;
+    }
+
+    main {
+      max-width: 850px;
+      border: 2px solid #32cd32;
+      padding: 1rem;
+      background: #1a1a1a;
+      box-shadow: 3px 3px 0px 0px #32cd32;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .project-tile {
+      opacity: 0.9;
+      background: #2b2b2b;
+      border-top: 2px dotted #32cd32;
+      border-left: 2px dotted #32cd32;
+      border-right: 2px solid #32cd32;
+      border-bottom: 2px solid #32cd32;
+      transition: transform 0.2s;
+      /* add a solid offset "shadow", without blur. only to the bottom and to the right */
+      box-shadow: 3px 3px 0px 0px #32cd32;
+    }
+
+    .project-tile:hover {
+      border-top: 2px solid #32cd32;
+      border-left: 2px solid #32cd32;
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .project:hover {
+      transform: translateY(-2px);
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    .screenshot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .screenshot img {
+    }
+
+    .screenshot a {
+        line-height: 0;
+    }
+
+    .screenshot a:hover img {
+        /* add inner border so it doesn't move. we cant use the "border" attribute */
+        box-shadow: 0 0 0 1px #32cd32;
+    }
+
+    .title-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #32cd32;
+      padding-inline: 1rem;
+      padding-block: 0.5rem;
+    }
+
+    .tile-content {
+      padding: 1rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (min-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      main {
+        width: 90%;
+        max-width: 600px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      main {
+        width: 90%;
+        max-width: 1200px;
+        border: 3px solid #32cd32;
+        padding: 1rem;
+        background: #1a1a1a;
+      }
+    }
+

@@ -1,0 +1,21 @@
+{
+  "id": "bitmap-type-tracer",
+  "name": "bitmap_type_tracer",
+  "show_name": false,
+  "year_started": 2024,
+  "year_modified": 2024,
+  "dateCreated": "2023-10-26",
+  "logo": "logos/bitmap-type-tracer.png",
+  "screenshots": [
+    "screenshots/bitmap-type-tracer-1.png",
+    "screenshots/bitmap-type-tracer-2.png"
+  ],
+  "description": [
+    "bitmap_type_tracer is a CLI tool, written in Rust, to generate text-images from bitmaps-font, I wrote in an effort to get into the Rust ecosystem.",
+    "It takes the bitmap-font and the text you want to write as input and generates an image with the provided text and the provided bitmap font."
+  ],
+  "technologies": ["Rust"],
+  "platforms": ["Windows", "Linux"],
+  "repository": "https://github.com/tolik518/bitmap_type_tracer",
+  "category": "DeveloperTool"
+}

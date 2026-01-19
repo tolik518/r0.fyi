@@ -1,0 +1,39 @@
+---
+layout: layout.njk
+title: Anatolij Vasilev (tolik518)
+description: "Portfolio of Anatolij Vasilev (tolik518): Rust tools, savegame editors, GBA projects, and the factorion-bot. Small, practical projects with source code."
+permalink: /
+---
+<section class="projects-grid">
+{% for project in projects %}
+  <div class="project-tile" id="{{ project.id }}">
+    <div class="title-box">
+      <h2 class="logo-name">
+        {% if project.logo %}
+        <img src="{{ project.logo }}" alt="{{ project.name }}">
+        {% endif %}
+        {% if project.show_name %}
+        {{ project.name }}
+        {% endif %}
+      </h2>
+      <div class="year">({{ project.year_started }}{% if project.year_modified and project.year_modified != project.year_started %}-{{ project.year_modified }}{% endif %})</div>
+    </div>
+    <div class="tile-content">
+      {% if project.screenshots.length > 0 %}
+      <div class="screenshot">
+        {% for screenshot in project.screenshots %}
+        <a href="{{ screenshot }}" target="_blank">
+          <img src="{{ screenshot }}" style="{% if project.screenshotHeight %}height: {{ project.screenshotHeight }};{% elif project.screenshotWidth %}width: {{ project.screenshotWidth }};{% else %}width: 240px;{% endif %}" alt="{{ project.name }}">
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% for paragraph in project.description %}
+      <p>{{ paragraph | safe }}</p>
+      {% endfor %}
+      <a class="source-code" href="{{ project.repository }}">Source Code</a>
+      <a class="source-code" href="/projects/{{ project.id }}/" style="margin-right: 10px">Details →</a>
+    </div>
+  </div>
+{% endfor %}
+</section>

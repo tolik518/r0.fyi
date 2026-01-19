@@ -1,0 +1,15 @@
+{
+  "name": "r0-fyi",
+  "version": "1.0.0",
+  "description": "Portfolio website of Anatolij Vasilev",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "author": "tolik518",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}

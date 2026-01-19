@@ -1,0 +1,22 @@
+{
+  "id": "sog-savegame-editor",
+  "name": "SoG: Savegame Editor",
+  "show_name": true,
+  "year_started": 2021,
+  "year_modified": 2025,
+  "dateCreated": "2021-01-06",
+  "logo": "logos/sog-savegame-editor.png",
+  "logoHeight": "48px",
+  "screenshots": [
+    "screenshots/sog-savegame-editor-1.png",
+    "screenshots/sog-savegame-editor-2.png"
+  ],
+  "description": [
+    "This is a savegame editor for <a href=\"https://www.secretsofgrindea.com/index.php/media\">Secrets of Grindea</a>, a game I enjoyed playing.",
+    "The SoG Savegame Editor, written in C#, allows you to open your save game, and edit various aspects such as your name, money, skills, experience, and inventory. You can also export the whole savegame to a JSON file. I still passively maintain the project and add new items, flags, and bug fixes time to time."
+  ],
+  "technologies": ["C#"],
+  "platforms": ["Windows"],
+  "repository": "https://github.com/tolik518/SoG-Savegame-Editor",
+  "category": "DeveloperTool"
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- the html is hand carved with a chisel -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>r0.fyi — {{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="https://r0.fyi/">
+  <meta name="theme-color" content="#2b2b2b">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "url": "https://r0.fyi/",
+        "name": "r0.fyi — Portfolio of Anatolij Vasilev (tolik518)",
+        "description": "Rust tools, savegame editors, GBA projects, and the factorion-bot. Small, practical projects with source code.",
+        "author": {"@id": "#person"}
+      },
+      {
+        "@type": "Person",
+        "@id": "#person",
+        "name": "Anatolij Vasilev",
+        "alternateName": "tolik518",
+        "url": "https://r0.fyi/",
+        "sameAs": [
+          "https://github.com/tolik518"
+        ],
+        "description": "Software developer from Germany interested in Rust and Retro Computing."
+      },
+      {% for project in projects %}
+      {
+        "@type": "SoftwareApplication",
+        "name": "{{ project.name }}",
+        "applicationCategory": "{{ project.category }}",
+        "operatingSystem": "{{ project.platforms | join(", ") }}",
+        "programmingLanguage": "{{ project.technologies | join(", ") }}",
+        "url": "https://r0.fyi/#{{ project.id }}",
+        "author": {"@id": "#person"},
+        "dateCreated": "{{ project.dateCreated }}",
+        "repository": "{{ project.repository }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>r0.fyi</h1>
+    {% if page.url == "/" %}
+    <p>Hi, I'm Anatolij Vasilev (<a href="https://github.com/tolik518" target="_blank">@tolik518</a>), a software developer from Germany.</p>
+    <p>I'm interested in all kinds of stuff, for now I'm into Rust and Retro Computing.</p>
+    <p>On the page you'll find a small collection of the projects I worked on in my free time.</p>
+    {% endif %}
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer>
+    <p>© 2025-2026 tolik518</p>
+  </footer>
+</body>
+</html>
