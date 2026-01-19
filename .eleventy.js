@@ -3,6 +3,11 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("screenshots");
   eleventyConfig.addPassthroughCopy("logos");
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
+
+  eleventyConfig.addGlobalData("buildDate", () => {
+    return new Date().toISOString().split('T')[0];
+  });
 
   // Load project data from JSON files
   eleventyConfig.addGlobalData("projects", () => {

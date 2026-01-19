@@ -1,0 +1,37 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://r0.fyi/</loc>
+    <lastmod>{{ buildDate }}</lastmod>
+  </url>
+{%- for project in projects %}
+  <url>
+    <loc>https://r0.fyi/projects/{{ project.id }}/</loc>
+    {%- if project.dateCreated %}
+    <lastmod>{{ project.dateCreated }}</lastmod>
+    {%- endif %}
+    {%- if project.logo %}
+    <image:image>
+      {%- if "://" in project.logo %}
+      <image:loc>{{ project.logo }}</image:loc>
+      {%- else %}
+      <image:loc>https://r0.fyi/{{ project.logo }}</image:loc>
+      {%- endif %}
+    </image:image>
+    {%- endif %}
+    {%- for screenshot in project.screenshots %}
+    <image:image>
+      {%- if "://" in screenshot %}
+      <image:loc>{{ screenshot }}</image:loc>
+      {%- else %}
+      <image:loc>https://r0.fyi/{{ screenshot }}</image:loc>
+      {%- endif %}
+    </image:image>
+    {%- endfor %}
+  </url>
+{%- endfor %}
+</urlset>
