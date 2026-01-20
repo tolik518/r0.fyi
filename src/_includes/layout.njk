@@ -50,12 +50,10 @@
 </head>
 <body>
   <header>
-    <h1>r0.fyi</h1>
-    {% if page.url == "/" %}
+    <p id="site-title">r0.fyi</p>
     <p>Hi, I'm Anatolij Vasilev (<a href="https://github.com/tolik518" target="_blank">@tolik518</a>), a software developer from Germany.</p>
     <p>I'm interested in all kinds of stuff, for now I'm into Rust and Retro Computing.</p>
     <p>On the page you'll find a small collection of the projects I worked on in my free time.</p>
-    {% endif %}
   </header>
   <main>
     {{ content | safe }}
