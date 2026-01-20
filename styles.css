@@ -17,9 +17,15 @@
       padding: 1rem;
     }
 
-    h1 {
+    #site-title {
       margin-bottom: 1rem;
       font-size: 3rem;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
     }
     
     .logo-name {
@@ -27,7 +33,11 @@
       display: flex;
       align-items: center;
       font-size: 1rem;
-      width: inherit;
+      width: 100%;
+    }
+
+    h1.logo-name {
+      justify-content: center;
     }
 
     header {
@@ -133,6 +143,8 @@
       flex-wrap: wrap;
       gap: 1rem;
       margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dotted #32cd32;
     }
 
     .screenshot img {
@@ -160,12 +172,58 @@
       padding: 1rem;
     }
 
+    .project-details-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .project-info {
+      border-top: 1px dotted #32cd32;
+      padding-top: 1rem;
+    }
+
+    .project-info dt {
+      margin-top: 0.5rem;
+    }
+
+    .project-info dt:first-child {
+      margin-top: 0;
+    }
+
     footer {
       margin-top: 2rem;
       text-align: center;
     }
 
     @media (min-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      main {
+        width: 90%;
+        max-width: 600px;
+      }
+      
+      .project-details-layout {
+        flex-direction: row;
+      }
+
+      .project-main-content {
+        flex: 3;
+      }
+
+      .project-info {
+        flex: 1;
+        border-top: none;
+        border-left: 1px dotted #32cd32;
+        padding-top: 0;
+        padding-left: 1rem;
+        min-width: 200px;
+      }
+    }
+
+    @media (min-width: 1200px) {
       .projects-grid {
         grid-template-columns: 1fr;
       }

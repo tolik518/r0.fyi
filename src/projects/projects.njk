@@ -15,7 +15,7 @@ eleventyComputed:
 
 <div class="project-tile" style="opacity: 1; transform: none; cursor: default;">
   <div class="title-box">
-    <h2 class="logo-name">
+    <h1 class="logo-name">
       {% if project.logo %}
       {% if "://" in project.logo %}
       <img src="{{ project.logo }}" alt="{{ project.name }}">
@@ -23,47 +23,49 @@ eleventyComputed:
       <img src="/{{ project.logo }}" alt="{{ project.name }}">
       {% endif %}
       {% endif %}
-      {% if project.show_name %}
       {{ project.name }}
-      {% endif %}
-    </h2>
+    </h1>
     <div class="year">({{ project.year_started }}{% if project.year_finished and project.year_finished != project.year_started %}-{{ project.year_finished }}{% endif %})</div>
   </div>
 
   <div class="tile-content">
-    {% if project.screenshots.length > 0 %}
-    <div class="screenshot">
-      {% for screenshot in project.screenshots %}
-      {% if "://" in screenshot %}
-      <a href="{{ screenshot }}" target="_blank">
-        <img src="{{ screenshot }}" style="{% if project.screenshotHeight %}height: {{ project.screenshotHeight }};{% elif project.screenshotWidth %}width: {{ project.screenshotWidth }};{% else %}width: 240px;{% endif %}" alt="{{ project.name }}">
-      </a>
-      {% else %}
-      <a href="/{{ screenshot }}" target="_blank">
-        <img src="/{{ screenshot }}" style="{% if project.screenshotHeight %}height: {{ project.screenshotHeight }};{% elif project.screenshotWidth %}width: {{ project.screenshotWidth }};{% else %}width: 240px;{% endif %}" alt="{{ project.name }}">
-      </a>
-      {% endif %}
-      {% endfor %}
-    </div>
-    {% endif %}
+    <div class="project-details-layout">
+      <div class="project-main-content">
+        {% if project.screenshots.length > 0 %}
+        <div class="screenshot">
+          {% for screenshot in project.screenshots %}
+          {% if "://" in screenshot %}
+          <a href="{{ screenshot }}" target="_blank">
+            <img src="{{ screenshot }}" style="{% if project.screenshotHeight %}height: {{ project.screenshotHeight }};{% elif project.screenshotWidth %}width: {{ project.screenshotWidth }};{% else %}width: 240px;{% endif %}" alt="{{ project.name }}">
+          </a>
+          {% else %}
+          <a href="/{{ screenshot }}" target="_blank">
+            <img src="/{{ screenshot }}" style="{% if project.screenshotHeight %}height: {{ project.screenshotHeight }};{% elif project.screenshotWidth %}width: {{ project.screenshotWidth }};{% else %}width: 240px;{% endif %}" alt="{{ project.name }}">
+          </a>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
 
-    <div class="project-description">
-      {% for paragraph in project.description %}
-      <p>{{ paragraph | safe }}</p>
-      {% endfor %}
-    </div>
+        <div class="project-description">
+          {% for paragraph in project.description %}
+          <p>{{ paragraph | safe }}</p>
+          {% endfor %}
+        </div>
+      </div>
 
-    <div class="project-info" style="margin-top: 2rem; border-top: 1px dotted #32cd32; padding-top: 1rem;">
-      <dl>
-        <dt><strong>Technologies:</strong></dt>
-        <dd>{{ project.technologies.join(', ') }}</dd>
-        
-        <dt style="margin-top: 0.5rem;"><strong>Platforms:</strong></dt>
-        <dd>{{ project.platforms.join(', ') }}</dd>
-        
-        <dt style="margin-top: 0.5rem;"><strong>Repository:</strong></dt>
-        <dd><a href="{{ project.repository }}" target="_blank">{{ project.repository }}</a></dd>
-      </dl>
+      <div class="project-info">
+        <dl>
+          <dt><strong>Technologies:</strong></dt>
+          <dd>{{ project.technologies.join(', ') }}</dd>
+
+          <dt><strong>Platforms:</strong></dt>
+          <dd>{{ project.platforms.join(', ') }}</dd>
+
+          <dt><strong>Repository:</strong></dt>
+          <dd><a href="{{ project.repository }}" target="_blank">{{ project.repository }}</a></dd>
+        </dl>
+      </div>
     </div>
   </div>
 </div>
