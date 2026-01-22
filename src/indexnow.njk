@@ -1,0 +1,15 @@
+---
+permalink: /indexnow.json
+eleventyExcludeFromCollections: true
+---
+{
+  "host": "r0.fyi",
+  "key": "24e335425f4960cc7d731204bc19a55b3dc6ee4a6daa2d6c9bc9eb2ef25c710f",
+  "keyLocation": "https://r0.fyi/24e335425f4960cc7d731204bc19a55b3dc6ee4a6daa2d6c9bc9eb2ef25c710f",
+  "urlList": [
+    "https://r0.fyi/",
+    {%- for project in projects %}
+    "https://r0.fyi/projects/{{ project.id }}/"{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}

@@ -32,3 +32,20 @@ jobs:
 
       - name: Deploy to VPS
         run: rsync -avz --delete _site/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+
+      - name: IndexNow
+        run: |
+          HTTP_CODE=$(curl -s -o response.txt -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d @./_site/indexnow.json)
+          
+          echo "Response:"
+          cat response.txt
+          echo ""
+          
+          if [[ "$HTTP_CODE" =~ ^2 ]]; then
+            echo "Successfully sent IndexNow request (HTTP $HTTP_CODE)"
+          else
+            echo "IndexNow failed (HTTP $HTTP_CODE)"
+            exit 1
+          fi

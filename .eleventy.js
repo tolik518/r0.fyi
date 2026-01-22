@@ -5,6 +5,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("images/social-preview");
   eleventyConfig.addPassthroughCopy("images/logos");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
+  // IndexNow Key
+  eleventyConfig.addPassthroughCopy({ "src/key": "/" });
 
   eleventyConfig.addGlobalData("buildDate", () => {
     return new Date().toISOString().split('T')[0];
