@@ -4,10 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>r0.fyi — {{ title }}</title>
+  <title>{{ title }} — r0.fyi</title>
   <meta name="description" content="{{ description }}">
-  <link rel="canonical" href="https://r0.fyi/">
+  <link rel="canonical" href="https://r0.fyi{{ page.url }}">
   <meta name="theme-color" content="#2b2b2b">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://r0.fyi{{ page.url }}">
+  <meta property="og:title" content="{{ title }} — r0.fyi">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:site_name" content="r0.fyi">
+  {% if image %}
+  {% if "://" in image %}
+  <meta property="og:image" content="{{ image }}">
+  <meta name="twitter:image" content="{{ image }}">
+  {% else %}
+  <meta property="og:image" content="https://r0.fyi/{{ image }}">
+  <meta name="twitter:image" content="https://r0.fyi/{{ image }}">
+  {% endif %}
+  {% endif %}
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@tolik518">
+  <meta name="twitter:creator" content="@tolik518">
+  <meta name="twitter:title" content="{{ title }} — r0.fyi">
+  <meta name="twitter:description" content="{{ description }}">
+
   <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">
   {
@@ -15,9 +39,9 @@
     "@graph": [
       {
         "@type": "WebPage",
-        "url": "https://r0.fyi/",
-        "name": "r0.fyi — Portfolio of Anatolij Vasilev (tolik518)",
-        "description": "Rust tools, savegame editors, GBA projects, and the factorion-bot. Small, practical projects with source code.",
+        "url": "https://r0.fyi{{ page.url }}",
+        "name": "{{ title }} — r0.fyi",
+        "description": "{{ description }}",
         "author": {"@id": "#person"}
       },
       {
@@ -50,10 +74,12 @@
 </head>
 <body>
   <header>
-    <p id="site-title">r0.fyi</p>
-    <p>Hi, I'm Anatolij Vasilev (<a href="https://github.com/tolik518" target="_blank">@tolik518</a>), a software developer from Germany.</p>
-    <p>I'm interested in all kinds of stuff, for now I'm into Rust and Retro Computing.</p>
-    <p>On the page you'll find a small collection of the projects I worked on in my free time.</p>
+    <p id="site-title"><a href="/" style="text-decoration: none;">r0.fyi</a></p>
+    <div {% if page.url != "/" %}data-nosnippet{% endif %}>
+      <p>Hi, I'm Anatolij Vasilev (<a href="https://github.com/tolik518" target="_blank">@tolik518</a>), a software developer from Germany.</p>
+      <p>I'm interested in all kinds of stuff, for now I'm into Rust and Retro Computing.</p>
+      <p>On the page you'll find a small collection of the projects I worked on in my free time.</p>
+    </div>
   </header>
   <main>
     {{ content | safe }}

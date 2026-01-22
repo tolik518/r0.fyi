@@ -1,12 +1,17 @@
 module.exports = function(eleventyConfig) {
   // Copy static assets
   eleventyConfig.addPassthroughCopy("styles.css");
-  eleventyConfig.addPassthroughCopy("screenshots");
-  eleventyConfig.addPassthroughCopy("logos");
+  eleventyConfig.addPassthroughCopy("images/screenshots");
+  eleventyConfig.addPassthroughCopy("images/social-preview");
+  eleventyConfig.addPassthroughCopy("images/logos");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
 
   eleventyConfig.addGlobalData("buildDate", () => {
     return new Date().toISOString().split('T')[0];
+  });
+
+  eleventyConfig.addFilter("stripHtml", (content) => {
+    return content ? content.replace(/(<([^>]+)>)/gi, "") : "";
   });
 
   // Load project data from JSON files
@@ -21,7 +26,21 @@ module.exports = function(eleventyConfig) {
     files.forEach(file => {
       if (file.endsWith('.json')) {
         const content = fs.readFileSync(path.join(dataDir, file), 'utf8');
-        projects.push(JSON.parse(content));
+        const project = JSON.parse(content);
+
+        // Auto-detect logo
+        const logoPath = `images/logos/${project.id}.png`;
+        if (fs.existsSync(path.join(__dirname, logoPath))) {
+          project.logo = logoPath;
+        }
+
+        // Auto-detect social preview
+        const socialPreviewPath = `images/social-preview/${project.id}.png`;
+        if (fs.existsSync(path.join(__dirname, socialPreviewPath))) {
+          project.social_preview = socialPreviewPath;
+        }
+
+        projects.push(project);
       }
     });
     
