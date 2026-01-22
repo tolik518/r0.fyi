@@ -1,8 +1,6 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,6 +9,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://r0.fyi
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -38,11 +39,15 @@ jobs:
           HTTP_CODE=$(curl -s -o response.txt -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
             -H "Content-Type: application/json" \
             -d @./_site/indexnow.json)
-          
+
+          echo "Body:"
+          cat ./_site/indexnow.json
+          echo ""
+
           echo "Response:"
           cat response.txt
           echo ""
-          
+
           if [[ "$HTTP_CODE" =~ ^2 ]]; then
             echo "Successfully sent IndexNow request (HTTP $HTTP_CODE)"
           else
