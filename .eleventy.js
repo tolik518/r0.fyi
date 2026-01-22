@@ -38,6 +38,23 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  // Minify CSS after build
+  eleventyConfig.on('eleventy.after', async () => {
+    const CleanCSS = require('clean-css');
+    const fs = require('fs');
+    const path = require('path');
+    
+    const outputDir = "_site";
+    const cssFile = path.join(__dirname, outputDir, "styles.css");
+    
+    if (fs.existsSync(cssFile)) {
+      console.log("Minifying styles.css...");
+      const input = fs.readFileSync(cssFile, "utf8");
+      const output = new CleanCSS({}).minify(input).styles;
+      fs.writeFileSync(cssFile, output);
+    }
+  });
+
   return {
     dir: {
       input: "src",
