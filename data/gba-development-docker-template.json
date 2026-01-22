@@ -1,17 +1,22 @@
 {
-  "id": "gba-dev-docker-template",
+  "id": "gba-development-docker-template",
   "name": "GBA Development Docker Template",
   "show_name": true,
   "year_started": 2022,
   "year_modified": 2022,
   "dateCreated": "2022-05-26",
-  "logo": "logos/gba-development-docker-template.png",
   "screenshots": [],
   "description": [
     "A GBA game development skeleton project, written in C, and dockerized. The project contains a Docker template so one can start developing GameBoy Advance games without the need of installing all the tooling like devkitPro or any other dependencies."
   ],
-  "technologies": ["C", "Docker"],
-  "platforms": ["Windows", "Linux"],
+  "technologies": [
+    "C",
+    "Docker"
+  ],
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
   "repository": "https://github.com/tolik518/GBA_Dev_Docker_Template",
   "category": "DeveloperTool"
 }

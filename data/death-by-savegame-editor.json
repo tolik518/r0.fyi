@@ -5,17 +5,21 @@
   "year_started": 2025,
   "year_modified": 2025,
   "dateCreated": "2025-11-29",
-  "logo": "logos/death-by-savegame-editor.png",
   "screenshots": [
-    "screenshots/death-by-savegame-editor-2.png",
-    "screenshots/death-by-savegame-editor-1.png"
+    "images/screenshots/death-by-savegame-editor-2.png",
+    "images/screenshots/death-by-savegame-editor-1.png"
   ],
   "description": [
     "Savegame editor for the game Death by Scrolling. It allows you to fully modify your save file.",
     "It was written using Rust and the savegame format was reverse engineered using ghidra, gdb and a good old hex editor."
   ],
-  "technologies": ["Rust"],
-  "platforms": ["Windows", "Linux"],
+  "technologies": [
+    "Rust"
+  ],
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
   "repository": "https://github.com/tolik518/death-by-savegame-editor",
   "category": "DeveloperTool"
 }

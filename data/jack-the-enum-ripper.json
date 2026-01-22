@@ -5,14 +5,17 @@
   "year_started": 2024,
   "year_modified": 2024,
   "dateCreated": "2024-02-22",
-  "logo": "logos/jacktheenumripper.png",
   "screenshots": [],
   "description": [
     "Jack the Enum Ripper is a CLI tool, written in c#, designed to extract enums from .NET assemblies and output them in various formats.",
     "I wrote the tool to help me to maintain my SoG Savegame Editor, as I needed to extract enums from the game's assemblies to keep the savegame editor up to date."
   ],
-  "technologies": ["C#"],
-  "platforms": ["Windows"],
+  "technologies": [
+    "C#"
+  ],
+  "platforms": [
+    "Windows"
+  ],
   "repository": "https://github.com/tolik518/JackTheEnumRipper",
   "category": "DeveloperTool"
 }

@@ -5,14 +5,17 @@
   "year_started": 2024,
   "year_modified": 2024,
   "dateCreated": "2024-05-19",
-  "logo": null,
   "screenshots": [],
   "description": [
     "A no_std rust crate for detecting the environment/system on which the Game Boy Advance ROM is currently running ex. GBA/NDS/mGBA/VBA/gpSP.",
     "The crate was mostly a community effort. Most of the algorithms already existed in the community, but they were scattered around in different projects. I collected them, put them together, and created a crate out of them."
   ],
-  "technologies": ["Rust"],
-  "platforms": ["Game Boy Advance"],
+  "technologies": [
+    "Rust"
+  ],
+  "platforms": [
+    "Game Boy Advance"
+  ],
   "repository": "https://github.com/tolik518/gba_env",
   "category": "DeveloperTool"
 }

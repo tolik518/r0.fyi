@@ -1,0 +1,25 @@
+{
+  "id": "factorion-bot",
+  "name": "factorion-bot",
+  "show_name": true,
+  "year_started": 2024,
+  "screenshotWidth": "100%",
+  "year_modified": 2026,
+  "dateCreated": "2024-05-04",
+  "logoHeight": "48px",
+  "screenshots": [
+    "images/screenshots/factorion-bot-1.png"
+  ],
+  "description": [
+    "A reddit bot, written in Rust \ud83e\udd80, replying to comments, containing factorials, with the solution. This little fella is currently running on r/mathmemes, r/unexpectedfactorial and on some smaller subreddits."
+  ],
+  "technologies": [
+    "Rust"
+  ],
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "repository": "https://github.com/tolik518/factorion-bot",
+  "category": "Bot"
+}
