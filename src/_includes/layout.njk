@@ -8,7 +8,7 @@
   <meta name="description" content="{{ description }}">
   <link rel="canonical" href="https://r0.fyi{{ page.url }}">
   <meta name="theme-color" content="#2b2b2b">
-  
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://r0.fyi{{ page.url }}">
@@ -31,6 +31,10 @@
   <meta name="twitter:creator" content="@tolik518">
   <meta name="twitter:title" content="{{ title }} — r0.fyi">
   <meta name="twitter:description" content="{{ description }}">
+
+  {% if keywords %}
+  <meta name="keywords" content="{{ keywords }}">
+  {% endif %}
 
   <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">
