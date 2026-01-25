@@ -1,6 +1,5 @@
 module.exports = function(eleventyConfig) {
   // Copy static assets
-  eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("images/screenshots");
   eleventyConfig.addPassthroughCopy("images/social-preview");
   eleventyConfig.addPassthroughCopy("images/logos");
@@ -16,15 +15,69 @@ module.exports = function(eleventyConfig) {
     return content ? content.replace(/(<([^>]+)>)/gi, "") : "";
   });
 
+  eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, style, sizes = "100vw", loading = "lazy", decoding = "async", fetchpriority = "auto") {
+    if(alt === undefined) {
+      // alt text is required (alt="" is ok though)
+      throw new Error(`Missing \`alt\` on myImage from: ${src}`);
+    }
+
+    // prepend / if it's a relative path starting with images/ to make it project-root relative
+    // Actually, if src is "images/...", and we run eleventy from root, it works.
+    // Use path.join to be safe?
+    // If it starts with / or http, handle appropriately.
+    let inputPath = src;
+    if (!src.startsWith("http") && !src.startsWith("/")) {
+      inputPath = "./" + src;
+    } else if (src.startsWith("/")) {
+      inputPath = "." + src;
+    }
+
+    let isLogo = src.includes("logos/");
+    let widths = isLogo ? [null] : [400, 800, 1200];
+    let formats = isLogo ? ["auto"] : ["avif", "webp", "auto"];
+
+    let metadata = await require("@11ty/eleventy-img")(inputPath, {
+      widths,
+      formats,
+      outputDir: "./_site/images/optimized/",
+      urlPath: "/images/optimized/"
+    });
+
+    let imageAttributes = {
+      alt,
+      sizes,
+      style,
+      loading,
+      decoding,
+      fetchpriority
+    };
+
+    // You bet we throw an error on missing alt (alt="" works okay)
+    return require("@11ty/eleventy-img").generateHTML(metadata, imageAttributes);
+  });
+
+  eleventyConfig.addShortcode("inlineCss", () => {
+    const fs = require("fs");
+    const cssPath = "./styles.css";
+    if (fs.existsSync(cssPath)) {
+      const css = fs.readFileSync(cssPath, "utf8");
+      const CleanCSS = require("clean-css");
+      return new CleanCSS({}).minify(css).styles;
+    }
+    return "";
+  });
+
+
+
   // Load project data from JSON files
   eleventyConfig.addGlobalData("projects", () => {
     const fs = require('fs');
     const path = require('path');
     const dataDir = path.join(__dirname, 'data');
-    
+
     const projects = [];
     const files = fs.readdirSync(dataDir);
-    
+
     files.forEach(file => {
       if (file.endsWith('.json')) {
         const content = fs.readFileSync(path.join(dataDir, file), 'utf8');
@@ -45,13 +98,13 @@ module.exports = function(eleventyConfig) {
         projects.push(project);
       }
     });
-    
+
     // Sort by year_modified (desc) then year_started (desc), so the currently active projects appear first
     return projects.sort((a, b) => {
       // Use year_started as fallback for year_modified if it's missing (though it should be there)
       const aEnd = a.year_modified || a.year_started;
       const bEnd = b.year_modified || b.year_started;
-      
+
       if (bEnd !== aEnd) {
         return bEnd - aEnd;
       }
@@ -64,10 +117,10 @@ module.exports = function(eleventyConfig) {
     const CleanCSS = require('clean-css');
     const fs = require('fs');
     const path = require('path');
-    
+
     const outputDir = "_site";
     const cssFile = path.join(__dirname, outputDir, "styles.css");
-    
+
     if (fs.existsSync(cssFile)) {
       console.log("Minifying styles.css...");
       const input = fs.readFileSync(cssFile, "utf8");

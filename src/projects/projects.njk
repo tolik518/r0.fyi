@@ -19,11 +19,15 @@ eleventyComputed:
   <div class="title-box">
     <h1 class="logo-name">
       {% if project.logo %}
-      {% if "://" in project.logo %}
-      <img src="{{ project.logo }}" alt="{{ project.name }}">
-      {% else %}
-      <img src="/{{ project.logo }}" alt="{{ project.name }}">
-      {% endif %}
+        {% image
+          project.logo,
+          project.name,
+          "",
+          "50px",
+          "eager",
+          "async",
+          "high"
+        %}
       {% endif %}
       {{ project.name }}
     </h1>
@@ -35,16 +39,30 @@ eleventyComputed:
       <div class="project-main-content">
         {% if project.screenshots.length > 0 %}
         <div class="screenshot">
+          {% set screenshotStyle %}
+            {% if project.screenshotHeight %}
+              height: {{ project.screenshotHeight }}; width: auto;
+            {% elif project.screenshotWidth %}
+              width: {{ project.screenshotWidth }}; height: auto;
+            {% else %}
+              width: 240px; height: auto;
+            {% endif %}
+          {% endset %}
+
           {% for screenshot in project.screenshots %}
-          {% if "://" in screenshot %}
-          <a href="{{ screenshot }}" target="_blank">
-            <img src="{{ screenshot }}" style="{% if project.screenshotHeight %}height: {{ project.screenshotHeight }};{% elif project.screenshotWidth %}width: {{ project.screenshotWidth }};{% else %}width: 240px;{% endif %}" alt="{{ project.name }}">
-          </a>
-          {% else %}
-          <a href="/{{ screenshot }}" target="_blank">
-            <img src="/{{ screenshot }}" style="{% if project.screenshotHeight %}height: {{ project.screenshotHeight }};{% elif project.screenshotWidth %}width: {{ project.screenshotWidth }};{% else %}width: 240px;{% endif %}" alt="{{ project.name }}">
-          </a>
-          {% endif %}
+            <a href="{% if '://' in screenshot %}{{ screenshot }}{% else %}/{{ screenshot }}{% endif %}" target="_blank">
+               {% set loading = "eager" if loop.first else "lazy" %}
+               {% set fetchPriority = "high" if loop.first else "auto" %}
+               {% image
+                 screenshot,
+                 project.name,
+                 screenshotStyle,
+                 "(min-width: 600px) 600px, 100vw",
+                 loading,
+                 "async",
+                 fetchPriority
+               %}
+            </a>
           {% endfor %}
         </div>
         {% endif %}
