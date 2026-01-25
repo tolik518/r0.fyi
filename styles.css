@@ -27,17 +27,24 @@
       font-size: 3rem;
       font-weight: bold;
     }
-    
+
     .logo-name {
       /* line offset so text and image matches */
       display: flex;
       align-items: center;
       font-size: 1rem;
-      width: 100%;
+      flex-grow: 1;
+      flex-wrap: wrap;
+      /*column-gap: 0.5rem;*/
+      overflow-wrap: anywhere;
+      min-width: 0; 
+      word-break: break-word;
+      line-height: normal;
     }
 
     h1.logo-name {
       justify-content: center;
+      text-align: center;
     }
 
     header {
@@ -47,6 +54,7 @@
       padding: 1rem;
       background: #1a1a1a;
       box-shadow: 3px 3px 0px 0px #32cd32;
+      max-width: 100%;
     }
 
     .logo-name img {
@@ -54,7 +62,6 @@
       width: auto;
       max-width: 100%;
       max-height: 48px;
-      margin-right: 0.5rem;
     }
 
     .year {
@@ -163,6 +170,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      /* flex-wrap: wrap; */
+      column-gap: 0.5rem;
       border-bottom: 1px solid #32cd32;
       padding-inline: 1rem;
       padding-block: 0.5rem;
@@ -187,6 +196,14 @@
       margin-top: 0.5rem;
     }
 
+    .project-info dd {
+      overflow-wrap: anywhere;
+    }
+
+    .project-info dd a {
+      word-break: break-all;
+    }
+
     .project-info dt:first-child {
       margin-top: 0;
     }
@@ -204,7 +221,7 @@
         width: 90%;
         max-width: 600px;
       }
-      
+
       .project-details-layout {
         flex-direction: row;
       }
