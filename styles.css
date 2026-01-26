@@ -166,6 +166,14 @@
         box-shadow: 0 0 0 1px #32cd32;
     }
 
+    picture {
+      line-height: 0;
+    }
+
+    source {
+      line-height: 0;
+    }
+
     .title-box {
       display: flex;
       justify-content: space-between;

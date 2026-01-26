@@ -15,10 +15,19 @@ module.exports = function(eleventyConfig) {
     return content ? content.replace(/(<([^>]+)>)/gi, "") : "";
   });
 
+  eleventyConfig.addFilter("isExternalLink", (url) => {
+    return url && (url.startsWith("http") || url.startsWith("//"));
+  });
+
   eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, style, sizes = "100vw", loading = "lazy", decoding = "async", fetchpriority = "auto") {
     if(alt === undefined) {
       // alt text is required (alt="" is ok though)
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
+    }
+
+    // If it is an external URL, do not optimize it (dynamic images)
+    if (src.startsWith("http")) {
+      return `<img src="${src}" alt="${alt}" style="${style}" sizes="${sizes}" loading="${loading}" decoding="${decoding}" fetchpriority="${fetchpriority}">`;
     }
 
     // prepend / if it's a relative path starting with images/ to make it project-root relative

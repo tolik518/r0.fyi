@@ -1,0 +1,29 @@
+{
+  "id": "strong-api-workout-fetch",
+  "name": "Strong API Workout Fetch",
+  "show_name": true,
+  "year_started": 2024,
+  "year_modified": 2026,
+  "dateCreated": "2024-02-24",
+  "additional_screenshot_css": "width: 100%; height:auto; background: #121212; border: 1px solid #32cd32;",
+  "screenshots": [
+    "https://r0.fyi/strong?style=material_dark"
+  ],
+  "description": [
+    "I rely on Strong App for daily workout tracking but wanted to avoid platform lock-in and maintain full ownership of my data.",
+    "So I reverse-engineered the Strong API behind the app to export and persist my workout history.",
+    "In the process, I identified and responsibly disclosed several API vulnerabilities, including a Premium status bypass and an email verification bypass.",
+    "In the end I wrote a Rust-based service that fetches the data and stores it in Clickhouse, enabling custom dashboards and visualization via Grafana."
+  ],
+  "technologies": [
+    "Rust",
+    "Clickhouse",
+    "Grafana",
+    "Docker"
+  ],
+  "platforms": [
+    "Linux"
+  ],
+  "repository": "https://github.com/tolik518/strong-api-workout-fetch",
+  "category": "Tool"
+}

@@ -33,17 +33,15 @@ permalink: /
       {% if project.screenshots.length > 0 %}
       <div class="screenshot">
         {% set screenshotStyle %}
-          {% if project.screenshotHeight %}
-            height: {{ project.screenshotHeight }}; width: auto;
-          {% elif project.screenshotWidth %}
-            width: {{ project.screenshotWidth }}; height: auto;
+          {% if project.additional_screenshot_css %}
+            {{ project.additional_screenshot_css | safe }}
           {% else %}
             width: 240px; height: auto;
           {% endif %}
         {% endset %}
 
         {% for screenshot in project.screenshots %}
-          <a href="/{{ screenshot }}" target="_blank">
+          <a href="{% if screenshot | isExternalLink %}{{ screenshot }}{% else %}/{{ screenshot }}{% endif %}" target="_blank">
             {# Prioritize the first screenshot of the first project for LCP #}
             {% set isHero = (loop.first and loop.parent.loop.first) %}
             {% set loading = "eager" if isHero else "lazy" %}
