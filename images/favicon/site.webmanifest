@@ -1,0 +1,26 @@
+{
+  "name": "tolik518 - r0.fyi",
+  "short_name": "r0.fyi",
+  "description": "Portfolio of Anatolij Vasilev (tolik518): Rust tools, savegame editors, GBA projects, and more.",
+  "start_url": "/",
+  "id": "/",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#32cd32",
+  "background_color": "#2b2b2b",
+  "display": "standalone"
+}

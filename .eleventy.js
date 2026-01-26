@@ -6,6 +6,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   // IndexNow Key
   eleventyConfig.addPassthroughCopy({ "src/key": "/" });
+  // Favicon files to root
+  eleventyConfig.addPassthroughCopy({ "images/favicon": "/" });
 
   eleventyConfig.addGlobalData("buildDate", () => {
     return new Date().toISOString().split('T')[0];
