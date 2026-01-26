@@ -13,6 +13,14 @@
   "technologies": [
     "Rust"
   ],
+  "keywords": [
+    "GBA Emulator Detection",
+    "Game Boy Advance Hardware Check",
+    "GBA Runtime Environment",
+    "Game Boy Advance Rust",
+    "Game Boy Advance Crate",
+    "GBA Flashcart Detection"
+  ],
   "platforms": [
     "Game Boy Advance"
   ],

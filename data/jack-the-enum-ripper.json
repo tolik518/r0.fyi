@@ -13,6 +13,14 @@
   "technologies": [
     "C#"
   ],
+  "keywords": [
+    ".NET Assembly Extraction",
+    "C# Enum Dumper",
+    "Reverse Engineering .NET",
+    "Assembly Metadata Tool",
+    "Enum Harvester",
+    "CLI Dev Tool"
+  ],
   "platforms": [
     "Windows"
   ],

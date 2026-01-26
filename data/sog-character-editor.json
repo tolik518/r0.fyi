@@ -15,6 +15,13 @@
   "technologies": [
     "Rust"
   ],
+  "keywords": [
+    "Secrets of Grindea Character Edit",
+    "Secrets of Grindea Name Changer",
+    "Secrets of Grindea Gender Change",
+    "Save File Customization",
+    "Secrets of Grindea Save Tweaker"
+  ],
   "platforms": [
     "Windows",
     "Linux"

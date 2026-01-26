@@ -16,6 +16,14 @@
   "technologies": [
     "Rust"
   ],
+  "keywords": [
+    "Bitmap Font Generator",
+    "Text to Image CLI",
+    "Bitmap To Image",
+    "Command Line Tool",
+    "Image Font to Text",
+    "Image Font to Image"
+  ],
   "platforms": [
     "Windows",
     "Linux"

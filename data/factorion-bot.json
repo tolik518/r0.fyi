@@ -20,6 +20,11 @@
     "Loki", 
     "Alloy"
   ],
+  "keywords": [
+    "Reddit Math Bot",
+    "Factorial Calculator Bot",
+    "r/mathmemes bot"
+  ],
   "platforms": [
     "Windows",
     "Linux"

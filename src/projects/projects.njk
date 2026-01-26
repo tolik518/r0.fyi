@@ -9,7 +9,7 @@ eleventyComputed:
   title: "{{ project.name }}"
   description: "{{ project.description[0] | stripHtml }}"
   image: "{{ project.social_preview }}"
-  keywords: "{{ project.technologies | join(', ') }}"
+  keywords: "{{ project.keywords | join(', ') }}"
 ---
 <nav class="breadcrumb" style="margin-bottom: 1rem;">
   <a href="/">← Back to all projects</a>

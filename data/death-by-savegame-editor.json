@@ -16,6 +16,12 @@
   "technologies": [
     "Rust"
   ],
+  "keywords": [
+    "Death by Scrolling Save Editor",
+    "Death by Scrolling Save Hack",
+    "Save File Editor",
+    "Reverse Engineering Save Game"
+  ],
   "platforms": [
     "Windows",
     "Linux"

@@ -16,6 +16,12 @@
   "technologies": [
     "C"
   ],
+  "keywords": [
+    "Game Boy Advance Pong",
+    "GBA Homebrew Game",
+    "Retro Pong Clone",
+    "GBA Mode 3 Graphics"
+  ],
   "platforms": [
     "Game Boy Advance"
   ],
