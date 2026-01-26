@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /404.html
 Allow: /
 
 Sitemap: https://r0.fyi/sitemap.xml
