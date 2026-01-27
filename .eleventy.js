@@ -22,6 +22,7 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, style, sizes = "100vw", loading = "lazy", decoding = "async", fetchpriority = "auto") {
+    const path = require("path");
     if(alt === undefined) {
       // alt text is required (alt="" is ok though)
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
@@ -51,7 +52,12 @@ module.exports = function(eleventyConfig) {
       widths,
       formats,
       outputDir: "./_site/images/optimized/",
-      urlPath: "/images/optimized/"
+      urlPath: "/images/optimized/",
+      filenameFormat: function (id, src, width, format, options) {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-${width}.${format}`;
+      }
     });
 
     let imageAttributes = {

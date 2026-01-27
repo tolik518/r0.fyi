@@ -53,7 +53,7 @@ eleventyComputed:
                {% set fetchPriority = "high" if loop.first else "auto" %}
                {% image
                  screenshot,
-                 project.name,
+                 "Screenshot of " + project.name,
                  screenshotStyle,
                  "(min-width: 600px) 600px, 100vw",
                  loading,

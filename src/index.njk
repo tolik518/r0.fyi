@@ -1,18 +1,20 @@
 ---
 layout: layout.njk
-title: Anatolij Vasilev (tolik518) - Rust, Retro Computing, Tools
+title: Anatolij Vasilev (tolik518) - Open Source Software
 description: "Portfolio of Anatolij Vasilev (tolik518): Rust tools, savegame editors, GBA projects, and the factorion-bot. Small, practical projects with source code."
 keywords: "Rust, Retro Computing, Tools, Savegame Editors, GBA, Programming, Software, Portfolio, tolik518"
 permalink: /
 ---
+<h1 style="text-align: center; margin-bottom: 2rem;">Projects</h1>
 <section class="projects-grid">
 {% for project in projects %}
-  <div class="project-tile" id="{{ project.id }}">
+  {% set shouldEager = loop.index0 < 4 %}
+  <article class="project-tile" id="{{ project.id }}" itemscope itemtype="https://schema.org/SoftwareSourceCode">
     <div class="title-box">
-      <h2 class="logo-name">
+      <h2 class="logo-name" itemprop="name">
         {% if project.logo %}
-          {% set loading = "eager" if loop.first else "lazy" %}
-          {% set fetchPriority = "high" if loop.first else "auto" %}
+          {% set loading = "eager" if shouldEager else "lazy" %}
+          {% set fetchPriority = "high" if shouldEager else "auto" %}
           {% image
             project.logo,
             project.name,
@@ -42,14 +44,14 @@ permalink: /
 
         {% for screenshot in project.screenshots %}
           <a href="{% if screenshot | isExternalLink %}{{ screenshot }}{% else %}/{{ screenshot }}{% endif %}" target="_blank">
-            {# Prioritize the first screenshot of the first project for LCP #}
-            {% set isHero = (loop.first and loop.parent.loop.first) %}
+            {# Prioritize the first screenshot of the top 4 projects #}
+            {% set isHero = (loop.first and shouldEager) %}
             {% set loading = "eager" if isHero else "lazy" %}
             {% set fetchPriority = "high" if isHero else "auto" %}
 
             {% image
               screenshot,
-              project.name,
+              "Screenshot of " + project.name,
               screenshotStyle,
               "(min-width: 600px) 400px, 100vw",
               loading,
@@ -61,11 +63,11 @@ permalink: /
       </div>
       {% endif %}
       {% for paragraph in project.description %}
-      <p>{{ paragraph | safe }}</p>
+      <p itemprop="description">{{ paragraph | safe }}</p>
       {% endfor %}
-      <a class="source-code" href="{{ project.repository }}">Source Code</a>
+      <a class="source-code" href="{{ project.repository }}" itemprop="codeRepository">Source Code</a>
       <a class="source-code" href="/projects/{{ project.id }}/" style="margin-right: 10px">Details →</a>
     </div>
-  </div>
+  </article>
 {% endfor %}
 </section>
