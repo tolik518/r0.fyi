@@ -7,7 +7,7 @@
   "dateCreated": "2024-02-24",
   "additional_screenshot_css": "width: 100%; height:auto; background: #121212; border: 1px solid #32cd32;",
   "screenshots": [
-    "https://r0.fyi/strong?style=material_dark"
+    "https://r0.fyi/strong?style=dark"
   ],
   "description": [
     "I rely on Strong App for daily workout tracking but wanted to avoid platform lock-in and maintain full ownership of my data.",
