@@ -3,7 +3,7 @@
   "name": "GBA Pong",
   "show_name": false,
   "year_started": 2022,
-  "year_modified": 2022,
+  "year_modified": 2026,
   "dateCreated": "2022-06-04",
   "screenshots": [
     "images/screenshots/gba-pong-1.png",
@@ -11,6 +11,7 @@
   ],
   "description": [
     "A simple Pong game developed for the Game Boy Advance using C. It utilizes the mode 3, also known as bitmap mode, and features a cool pixel art title screen.",
+    "After lots of fiddling I even got the Game Boy Advance link cable feature to work, so mutiplayer is possible!",
     "Although it doesn't have any advanced features, it was a great project for me to dive into the C programming world, into dockerizing a C environment, and into game development."
   ],
   "technologies": [
