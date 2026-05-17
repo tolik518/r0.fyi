@@ -1,7 +1,6 @@
 ---
 permalink: /blog/feed.xml
 layout: null
-tags: []
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
@@ -20,7 +19,7 @@ eleventyExcludeFromCollections: true
       <link>https://r0.fyi{{ post.url }}</link>
       <guid isPermaLink="true">https://r0.fyi{{ post.url }}</guid>
       <pubDate>{{ post.date | rfc822Date }}</pubDate>
-      <description>{{ post.data.description if post.data.description else (post.content | stripHtml | truncate(300, false, "…")) }}</description>
+      <description>{{ post.data.description if post.data.description else (post.content | stripHtml | truncate(1100, false, "…")) }}</description>
     </item>
     {% endfor %}
   </channel>

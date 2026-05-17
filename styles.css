@@ -287,7 +287,6 @@
       border-bottom: 2px solid #32cd32;
       box-shadow: 3px 3px 0px 0px #32cd32;
       transition: transform 0.2s;
-      padding: 1rem;
     }
 
     .blog-entry:hover {
@@ -297,20 +296,9 @@
       transform: translateY(-2px);
     }
 
-    .blog-entry-meta {
-      font-size: 0.8rem;
-      margin-bottom: 0.3rem;
-    }
-
     .blog-entry-title {
       font-size: 1.2rem;
-      margin-bottom: 0.75rem;
       line-height: 1.3;
-    }
-
-    .blog-entry-excerpt {
-      margin-bottom: 0.75rem;
-      font-size: 14px;
     }
 
     .blog-post-content table {
@@ -331,7 +319,7 @@
       border-bottom: 2px solid #32cd32;
     }
 
-.blog-post-content hr {
+    .blog-post-content hr {
       border: none;
       border-top: 1px dotted #32cd32;
       margin: 1.5rem 0;
@@ -351,6 +339,16 @@
 
     .blog-post-content p {
       margin-bottom: 1rem;
+    }
+
+    .blog-post-content ul,
+    .blog-post-content ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .blog-post-content li {
+      margin-bottom: 0.25rem;
     }
 
     .blog-post-content h2,
