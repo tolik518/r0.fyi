@@ -14,19 +14,19 @@ eleventyExcludeFromCollections: true
 {% if posts.length == 0 %}
   <p style="text-align: center;">No posts yet. Check back soon.</p>
 {% else %}
-  <section class="projects-grid">
+  <section class="blog-feed">
   {% for post in posts %}
-    <article class="project-tile">
-      <div class="title-box">
-        <h2 class="logo-name"><a href="{{ post.url }}" style="text-decoration: none;">{{ post.data.title }}</a></h2>
-        <div class="year">{{ post.date | readableDate }}</div>
-      </div>
-      <div class="tile-content">
+    <article class="blog-entry">
+      <div class="blog-entry-meta">{{ post.date | readableDate }}</div>
+      <h2 class="blog-entry-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      <div class="blog-entry-excerpt blog-post-content">
         {% if post.data.description %}
           <p>{{ post.data.description }}</p>
+        {% else %}
+          {{ post.content | truncateHtml(1000) | safe }}
         {% endif %}
-        <a class="source-code" href="{{ post.url }}">Read Post →</a>
       </div>
+      <a class="source-code" href="{{ post.url }}">Read Post →</a>
     </article>
   {% endfor %}
   </section>

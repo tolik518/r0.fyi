@@ -37,7 +37,7 @@ eleventyExcludeFromCollections: true
 {%- for post in collections.blog | sort(true, false, "date") %}
   <url>
     <loc>https://r0.fyi{{ post.url }}</loc>
-    <lastmod>{{ post.date | isoDate | truncate(10, false, "") }}</lastmod>
+    <lastmod>{{ post.date | dateString }}</lastmod>
   </url>
 {%- endfor %}
 </urlset>

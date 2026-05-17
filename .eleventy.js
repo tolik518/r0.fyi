@@ -3,6 +3,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("images/screenshots");
   eleventyConfig.addPassthroughCopy("images/social-preview");
   eleventyConfig.addPassthroughCopy("images/logos");
+  eleventyConfig.addPassthroughCopy("images/blog");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   // IndexNow Key
   eleventyConfig.addPassthroughCopy({ "src/key": "/" });
@@ -15,6 +16,53 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addFilter("stripHtml", (content) => {
     return content ? content.replace(/(<([^>]+)>)/gi, "") : "";
+  });
+
+  eleventyConfig.addFilter("truncateHtml", (content, limit) => {
+    if (!content) return '';
+    // Drop script/style blocks entirely so they don't count toward the preview
+    content = content.replace(/<script[\s\S]*?<\/script>/gi, '')
+                     .replace(/<style[\s\S]*?<\/style>/gi, '');
+    // If visible text already fits, return as-is
+    if (content.replace(/(<([^>]+)>)/gi, '').length <= limit) return content;
+
+    const voidElements = /^(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)$/i;
+    const parts = content.split(/(<[^>]*>)/);
+    const tagStack = [];
+    let charCount = 0;
+    let result = '';
+    let done = false;
+
+    for (const part of parts) {
+      if (done) break;
+      if (part.startsWith('<')) {
+        if (/^<\//.test(part)) {
+          tagStack.pop();
+        } else {
+          const name = (part.match(/^<(\w+)/) || [])[1] || '';
+          if (name && !voidElements.test(name) && !/\/>$/.test(part)) {
+            tagStack.push(name);
+          }
+        }
+        result += part;
+      } else {
+        const remaining = limit - charCount;
+        if (part.length <= remaining) {
+          result += part;
+          charCount += part.length;
+        } else {
+          const cut = part.slice(0, remaining).replace(/\s+\S*$/, '') || part.slice(0, remaining);
+          result += cut + '…';
+          done = true;
+        }
+      }
+    }
+
+    // Close any tags left open at the cut point
+    for (let i = tagStack.length - 1; i >= 0; i--) {
+      result += `</${tagStack[i]}>`;
+    }
+    return result;
   });
 
   eleventyConfig.addFilter("isExternalLink", (url) => {
@@ -96,6 +144,17 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addFilter("rfc822Date", (date) => {
     return new Date(date).toUTCString();
+  });
+
+  eleventyConfig.addFilter("dateString", (date) => {
+    return new Date(date).toISOString().slice(0, 10);
+  });
+
+  const markdownItAnchor = require("markdown-it-anchor");
+  eleventyConfig.amendLibrary("md", mdLib => {
+    mdLib.use(markdownItAnchor, {
+      permalink: markdownItAnchor.permalink.headerLink()
+    });
   });
 
   eleventyConfig.ignores.add("src/projects/*.json");
