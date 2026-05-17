@@ -1,0 +1,29 @@
+---
+permalink: /blog/feed.xml
+layout: null
+tags: []
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>r0.fyi — Blog</title>
+    <link>https://r0.fyi/blog/</link>
+    <description>Thoughts, write-ups, and notes by Anatolij Vasilev (tolik518).</description>
+    <language>en</language>
+    <atom:link href="https://r0.fyi/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>{{ buildDate | rfc822Date }}</lastBuildDate>
+    {% set posts = collections.blog | sort(true, false, "date") %}
+    {% for post in posts %}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <link>https://r0.fyi{{ post.url }}</link>
+      <guid isPermaLink="true">https://r0.fyi{{ post.url }}</guid>
+      <pubDate>{{ post.date | rfc822Date }}</pubDate>
+      {% if post.data.description %}
+      <description>{{ post.data.description }}</description>
+      {% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

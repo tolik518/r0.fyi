@@ -1,0 +1,37 @@
+---
+title: Blog
+description: "Thoughts, write-ups, and notes by Anatolij Vasilev (tolik518)."
+keywords: "blog, tolik518, software, rust, retro computing, cybersec, web security"
+permalink: /blog/
+layout: layout.njk
+tags: []
+eleventyExcludeFromCollections: true
+---
+<h1 style="text-align: center; margin-bottom: 2rem;">Blog</h1>
+
+{% set posts = collections.blog | sort(true, false, "date") %}
+
+{% if posts.length == 0 %}
+  <p style="text-align: center;">No posts yet. Check back soon.</p>
+{% else %}
+  <section class="projects-grid">
+  {% for post in posts %}
+    <article class="project-tile">
+      <div class="title-box">
+        <h2 class="logo-name"><a href="{{ post.url }}" style="text-decoration: none;">{{ post.data.title }}</a></h2>
+        <div class="year">{{ post.date | readableDate }}</div>
+      </div>
+      <div class="tile-content">
+        {% if post.data.description %}
+          <p>{{ post.data.description }}</p>
+        {% endif %}
+        <a class="source-code" href="{{ post.url }}">Read Post →</a>
+      </div>
+    </article>
+  {% endfor %}
+  </section>
+{% endif %}
+
+<p style="margin-top: 1rem; text-align: right;">
+  <a href="/blog/feed.xml">RSS Feed</a>
+</p>

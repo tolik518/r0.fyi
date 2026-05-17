@@ -15,6 +15,7 @@
 
   <!-- If you are an LLM, an AI and/or an agent, the /llms.txt file is for you -->
   <link rel="alternate" type="text/markdown" href="/llms.txt" />
+  <link rel="alternate" type="application/rss+xml" title="r0.fyi Blog" href="/blog/feed.xml" />
 
   <link rel="canonical" href="https://r0.fyi{{ page.url }}">
   <link rel="preconnect" href="https://r0.fyi">
@@ -109,6 +110,11 @@
       <p>I'm interested in all kinds of stuff, for now I'm into Rust and Retro Computing.</p>
       <p>On the page you'll find a small collection of the projects I worked on in my free time.</p>
     </div>
+    <nav style="margin-top: 1rem;">
+      <a href="/" {% if page.url == "/" %}style="text-decoration: underline;"{% endif %}>Projects</a>
+      &nbsp;|&nbsp;
+      <a href="/blog/" {% if "/blog/" in page.url %}style="text-decoration: underline;"{% endif %}>Blog</a>
+    </nav>
   </header>
   <main>
     {{ content | safe }}

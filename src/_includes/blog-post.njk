@@ -1,0 +1,16 @@
+---
+layout: layout.njk
+---
+<nav class="breadcrumb" style="margin-bottom: 1rem;">
+  <a href="/blog/">← Back to blog</a>
+</nav>
+
+<div class="project-tile" style="opacity: 1; transform: none; cursor: default;">
+  <div class="title-box">
+    <h1 class="logo-name">{{ title }}</h1>
+    <div class="year">{{ page.date | readableDate }}</div>
+  </div>
+  <div class="tile-content blog-post-content">
+    {{ content | safe }}
+  </div>
+</div>

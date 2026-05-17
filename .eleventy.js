@@ -86,11 +86,25 @@ module.exports = function(eleventyConfig) {
 
 
 
+  eleventyConfig.addFilter("readableDate", (date) => {
+    return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+  });
+
+  eleventyConfig.addFilter("isoDate", (date) => {
+    return new Date(date).toISOString();
+  });
+
+  eleventyConfig.addFilter("rfc822Date", (date) => {
+    return new Date(date).toUTCString();
+  });
+
+  eleventyConfig.ignores.add("src/projects/*.json");
+
   // Load project data from JSON files
   eleventyConfig.addGlobalData("projects", () => {
     const fs = require('fs');
     const path = require('path');
-    const dataDir = path.join(__dirname, 'data');
+    const dataDir = path.join(__dirname, 'src', 'projects');
 
     const projects = [];
     const files = fs.readdirSync(dataDir);
