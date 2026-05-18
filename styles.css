@@ -98,11 +98,14 @@
     }
 
     main {
+      width: 100%;
       max-width: 850px;
       border: 2px solid #32cd32;
       padding: 1rem;
       background: #1a1a1a;
       box-shadow: 3px 3px 0px 0px #32cd32;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .projects-grid {
@@ -249,13 +252,10 @@
       }
     }
 
-    @media (min-width: 1200px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (min-width: 900px) {
       main {
         width: 90%;
-        max-width: 600px;
+        max-width: 850px;
       }
     }
 
@@ -269,6 +269,25 @@
         border: 3px solid #32cd32;
         padding: 1rem;
         background: #1a1a1a;
+      }
+    }
+
+    @media (max-width: 599px) {
+      .title-box {
+        flex-wrap: wrap;
+      }
+
+      .blog-entry-title {
+        font-size: 1rem;
+      }
+
+      .blog-post-content table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      .blog-post-content pre {
+        font-size: 12px;
       }
     }
 
