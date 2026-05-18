@@ -1,4 +1,8 @@
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+
 module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(syntaxHighlight);
+
   // Copy static assets
   eleventyConfig.addPassthroughCopy("images/screenshots");
   eleventyConfig.addPassthroughCopy("images/social-preview");

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "markdown-it-anchor": "^9.2.0"
   }
 }
