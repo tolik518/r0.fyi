@@ -38,21 +38,18 @@ Affected:
 ## 1. Background / Discovery notes
 
 At work I got the task to audit multiple repositories for security issues. With all the hype around [mythos](https://red.anthropic.com/2026/mythos-preview/) we've decided to do an AI-assisted code review.  
-Since all of our repositories don't have a publicly accessible API, the issues we've found weren't critical - but that motivated me to look into some open source repositories!  
-Some days prior I've stumbled upon [tangled](https://tangled.org), so it was an obvious target for me to poke a little bit around.
+This got me interested to also take a look into some open source repositories! Some days prior I've stumbled upon [tangled](https://tangled.org), so it was an obvious target for me to poke a little bit around.
 
 Tangled is a decentralized git forge built on top of the [AT Protocol](https://atproto.com/) (known for powering Bluesky).
 
-So I've started to look into the codebase manually first. When looking into the codebase I even made [some](https://tangled.org/tangled.org/core/pulls/1430/round/0) [small](https://tangled.org/tangled.org/core/pulls/1441/round/2) [contributions](https://tangled.org/tangled.org/core/pulls/1432/round/1). 
+So I've started to look into the codebase manually first (as I don't have unlimited tokens, I haven't sent in an agent just yet). When looking into the codebase I even made [some](https://tangled.org/tangled.org/core/pulls/1430/round/0) [small](https://tangled.org/tangled.org/core/pulls/1441/round/2) [contributions](https://tangled.org/tangled.org/core/pulls/1432/round/1). 
 
 Due to the decentralized nature it is possible to host your own knot, which is basically a host that handles git-operations. After digging a little bit more into it
-I've also found out that it's possible to use `localhost` as a knot. This means that the production tangled server would try to reach its own `localhost`. This smells like a vulnerability. Since the infrastructure of the tangled server is somewhat [transparent](https://tangled.org/tangled.org/infra/tree/b58686686afc02d84c792915fc98122e5e2b371f) 
-I knew where to look next.
+I've also found out that it's possible to use `localhost` as a knot. This means that the production tangled server would try to reach its own `localhost`. This smells like a vulnerability. Since the infrastructure of the tangled server is somewhat transparent through the monorepo and additionally through the [infra](https://tangled.org/tangled.org/infra/tree/b58686686afc02d84c792915fc98122e5e2b371f)-repo I knew where to look next.
 
 ![](/images/blog/tangled-add-your-knot.png)
 
-This is where I got too impatient to continue manually though and I got myself a [Claude Pro](https://claude.ai/upgrade/pro?interval=monthly) license for a month and installed the [claude cli](https://code.claude.com/docs/en/overview). Giving the
-agent all the information I've had it gave me a possible attack vector with a proof of concept, which I then manually verified and Bingo! I (we?) found a critical vulnerability!
+This is where I got too impatient to continue manually though and I got myself a [Claude Pro](https://claude.ai/upgrade/pro?interval=monthly) license for a month and installed the [claude cli](https://code.claude.com/docs/en/overview). Giving the agent all the information I've had it gave me a possible attack vector with a proof of concept, which I then manually verified and Bingo! I (we?) found a critical vulnerability!
 
 ---
 
@@ -147,7 +144,7 @@ Here is the last vulnerable state of the repo: [ba18ec20d332069db4e1c187f28191fb
 
 ## 4. Retest
 
-After `v1.14.0-alpha` was deployed, the original payload no longer returned the internal admin panel response. The public endpoint returned only:
+After `v1.14.0-alpha` was deployed, the original payload no longer returned the internal HTTP/admin panel response. The public endpoint returned only:
 
 ```json
 {"error":"InternalServerError","message":"failed to list branches"}
