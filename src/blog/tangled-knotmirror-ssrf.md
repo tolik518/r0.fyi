@@ -17,9 +17,9 @@ date: 2026-05-17
 Anyone with an account on any AT Protocol server can access HTTP servers on `localhost` of the tangled instance.
 The root cause is that the knotmirror proxy trusts a user-supplied field (knot) from an AT Protocol record as a literal URL, then makes an outbound HTTP GET to it from the mirror server itself. 
 
-By pointing that field for example at `http://127.0.0.1:7200/repos`, the server fetches its own unauthenticated internal admin panel and returns the response to the attacker. That way the attacker can access any internal HTTP services like Admin panels, Grafana dashboards or any other service that is not protected by authentication but only by network isolation.
+By pointing that field (for example) at `http://127.0.0.1:7200/repos`, the server fetches its own unauthenticated internal admin panel and returns the response to the attacker. That way the attacker can access any internal HTTP services like Admin panels, Grafana dashboards or any other service that is not protected by authentication but only by network isolation.
 
-Confirmed via limited proof-of-concept against production on 2026-05-08. No destructive actions were performed. Retrieved data was minimized and not redistributed.
+Confirmed via limited proof-of-concept test against production on 2026-05-08. No destructive actions were performed. Accessed data contained no secrets, no PII and was minimized and not redistributed.
 
 Affected:
 
@@ -30,7 +30,7 @@ Affected:
 **Not** confirmed / **not** part of this finding:
 
 - direct database access
-- arbitrary TCP protocol exploitation
+- arbitrary **non**-HTTP protocol interaction
 - compromise of user data 
 
 ---
@@ -38,14 +38,13 @@ Affected:
 ## 1. Background / Discovery notes
 
 At work I got the task to audit multiple repositories for security issues. With all the hype around [mythos](https://red.anthropic.com/2026/mythos-preview/) we've decided to do an AI-assisted code review.  
-This got me interested to also take a look into some open source repositories! Some days prior I've stumbled upon [tangled](https://tangled.org), so it was an obvious target for me to poke a little bit around.
+This got me interested to also take a look into some open source repositories! Some days prior I've stumbled upon [tangled](https://tangled.org), an open-source, decentralized git forge built on top of the [AT Protocol](https://atproto.com/) (known for powering Bluesky). So tangled it was the perfect candidate for me to poke a little bit around!
 
-Tangled is a decentralized git forge built on top of the [AT Protocol](https://atproto.com/) (known for powering Bluesky).
 
-So I've started to look into the codebase manually first (as I don't have unlimited tokens, I haven't sent in an agent just yet). When looking into the codebase I even made [some](https://tangled.org/tangled.org/core/pulls/1430/round/0) [small](https://tangled.org/tangled.org/core/pulls/1441/round/2) [contributions](https://tangled.org/tangled.org/core/pulls/1432/round/1). 
+I've started to look into the codebase manually first (I decided against using an agent for now, as I don't have unlimited tokens). When looking into the codebase and learning a little bit about the project, I have made [some](https://tangled.org/tangled.org/core/pulls/1430/round/0) [small](https://tangled.org/tangled.org/core/pulls/1441/round/2) [contributions](https://tangled.org/tangled.org/core/pulls/1432/round/1). 
 
 Due to the decentralized nature it is possible to host your own knot, which is basically a host that handles git-operations. After digging a little bit more into it
-I've also found out that it's possible to use `localhost` as a knot. This means that the production tangled server would try to reach its own `localhost`. This smells like a vulnerability. Since the infrastructure of the tangled server is somewhat transparent through the monorepo and additionally through the [infra](https://tangled.org/tangled.org/infra/tree/b58686686afc02d84c792915fc98122e5e2b371f)-repo I knew where to look next.
+I've also found out that it's possible to use `localhost` as a knot. This means that the production tangled server would try to reach its own `localhost`. This could be a potential SSRF condition. Since the infrastructure of the tangled server is somewhat transparent through the monorepo and additionally through the [infra](https://tangled.org/tangled.org/infra/tree/b58686686afc02d84c792915fc98122e5e2b371f)-repo I knew where to look next.
 
 ![](/images/blog/tangled-add-your-knot.png)
 
@@ -158,7 +157,7 @@ After `v1.14.0-alpha` was deployed, the original payload no longer returned the 
 |------------|------------------------------------------------------------------------------------------------|
 | 2026-05-08 | Vulnerability discovered during AI assisted code review                                        |
 | 2026-05-08 | Limited proof-of-concept confirmed against `mirror.tangled.network`                            |
-| 2026-05-08 | Reported send to oppi.li                                                                       |
-| 2026-05-10 | Reported send to security@tangled.org                                                          |
+| 2026-05-08 | Report send to oppi.li                                                                       |
+| 2026-05-10 | Report send to security@tangled.org                                                          |
 | 2026-05-13 | [PR](https://tangled.org/tangled.org/core/pulls/1497/round/1) was created, merged and deployed |
 | 2026-05-18 | Public responsible disclosure                                                                  |
