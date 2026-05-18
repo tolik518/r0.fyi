@@ -1,5 +1,7 @@
 ---
 title: "Tangled knotmirror: SSRF via User-Controlled Knot URL"
+description: "Anyone with an account on any AT Protocol server can access HTTP servers on `localhost` of the tangled instance. The root cause is that the knotmirror proxy trusts a user-supplied field (knot) from an AT Protocol record as a literal URL, then makes an outbound HTTP GET to it from the mirror server itself."
+image: "images/social-preview/tangled-knotmirror-ssrf.png"
 date: 2026-05-17
 ---
 

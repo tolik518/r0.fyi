@@ -21,11 +21,7 @@ eleventyExcludeFromCollections: true
         <div class="year">{{ post.date | readableDate }}</div>
       </div>
       <div class="tile-content blog-post-content">
-        {% if post.data.description %}
-          <p>{{ post.data.description }}</p>
-        {% else %}
-          {{ post.content | truncateHtml(1100) | safe }}
-        {% endif %}
+        {{ post.content | truncateHtml(1100) | safe }}
         <a class="source-code" href="{{ post.url }}">Read Post →</a>
       </div>
     </article>
